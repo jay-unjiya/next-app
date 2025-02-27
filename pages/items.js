@@ -80,11 +80,10 @@ export default function Item({ items }) {
         
         try {
             await axios.put(`https://next-app-git-main-jay-unjiyas-projects.vercel.app/api/items`, editData);
-            setTimeout(() => setSuccess(true), 600);
+            setSuccess(true);
             setTimeout(() => {
-                router.replace(router.asPath);
+                setLoading(false);  // Make sure to reset the loading state after the success
                 setEditFormIndex(null);
-                setLoading(false);
                 setSuccess(false);
                 setSubmitted(false);
             }, 1500);
@@ -94,6 +93,7 @@ export default function Item({ items }) {
             setSubmitted(false);
         }
     };
+    
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 p-6 overflow-hidden">

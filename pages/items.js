@@ -6,7 +6,7 @@ import { Package, Search, Plus, Edit, Trash2, Loader2, CheckCircle, ArrowLeft } 
 
 export async function getServerSideProps() {
     try {
-        const res = await axios.get("http://localhost:3000/api/items");
+        const res = await axios.get("https://next-app-git-main-jay-unjiyas-projects.vercel.app/api/items");
         return { props: { items: res.data } };
     } catch (error) {
         console.error("Error fetching items:", error);
@@ -45,7 +45,7 @@ export default function Item({ items }) {
     const handleRemove = async (id) => {
         try {
             setLoading(true);
-            await axios.delete(`http://localhost:3000/api/items/?id=${id}`);
+            await axios.delete(`https://next-app-git-main-jay-unjiyas-projects.vercel.app/api/items/?id=${id}`);
             setSuccess(true);
             setTimeout(() => {
                 router.replace(router.asPath);
@@ -79,7 +79,7 @@ export default function Item({ items }) {
         setSubmitted(true);
         
         try {
-            await axios.put(`http://localhost:3000/api/items`, editData);
+            await axios.put(`https://next-app-git-main-jay-unjiyas-projects.vercel.app/api/items`, editData);
             setTimeout(() => setSuccess(true), 600);
             setTimeout(() => {
                 router.replace(router.asPath);

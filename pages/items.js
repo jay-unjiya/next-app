@@ -79,11 +79,17 @@ export default function Item({ items }) {
         setSubmitted(true);
 
         try {
+            // Send the PUT request to update the item in the database
             await axios.put(`https://next-app-git-main-jay-unjiyas-projects.vercel.app/api/items`, editData);
-            setFilteredItems(updatedItems);
+
+            // Re-fetch the data from the API after the update
+            const res = await axios.get("https://next-app-git-main-jay-unjiyas-projects.vercel.app/api/items");
+            setFilteredItems(res.data);  // Update the filteredItems with the new data
+
             setSuccess(true);
+
             setTimeout(() => {
-                setLoading(false); 
+                setLoading(false);  // Reset loading state after success
                 setEditFormIndex(null);
                 setSuccess(false);
                 setSubmitted(false);
@@ -94,6 +100,7 @@ export default function Item({ items }) {
             setSubmitted(false);
         }
     };
+
 
 
     return (
